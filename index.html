@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfico de Mayor o Menor</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <style>
+        .valoreseny {float:left;}
+
+    </style>
+</head>
+<body>
+    <script>
+        function obtener_valores(id){
+            const get = document.getElementById(id).value;
+            return get;
+        }
+        function grafica_a()
+        {
+            //==========Obtener valores en x=================
+            var valor1x = obtener_valores("numero1x");
+            var valor2x = obtener_valores("numero2x");
+            var valor3x = obtener_valores("numero3x");
+            console.log(valor1y);
+            //==========Obtener valores en y=================
+            var valor1y = obtener_valores("numero1y");
+            var valor2y = obtener_valores("numero2y");
+            var valor3y = obtener_valores("numero3y");
+            var puntos = [
+            {x:valor1x,y:valor1y},
+            {x:valor2x,y:valor2y},
+            {x:valor3x,y:valor3y}
+            ];
+           
+            const grafico = new Chart("Grafico",{
+                type : "scatter",
+                data:{
+                    datasets:[{
+                        pointRadius : 4,
+                        pointBackgroundColor: "#CC0000",
+                        data: puntos
+                    }]
+                },
+                options: {
+                    legend: {display : false},
+                    scales: {
+                        xAxes: [{ticks: {min: 1, max:20}}],
+                        yAxes: [{ticks: {min: 6, max:16}}],
+                    }
+                }
+               
+            });
+            
+        }
+     
+    </script>
+    <div class="valoresenx">
+        <h1 style="color:red">Valores En X</h1>
+        <p>Ingrese Primer Numero</p><input id="numero1x">
+        <p>Ingrese segundo Numero</p><input id="numero2x">
+        <p>Ingrese tercer numero Numero</p><input id="numero3x">  
+    </div>
+    <div class="valoreseny">
+        <h1 style="color:rgb(15, 156, 34)">Valores En Y</h1>
+        <p>Ingrese Primer Numero</p><input id="numero1y">
+        <p>Ingrese segundo Numero</p><input id="numero2y">
+        <p>Ingrese tercer numero Numero</p><input id="numero3y">
+  
+       
+    </div>
+    <button onclick="grafica_a()" style="width: 150px; height: 50px;">Graficar</button>
+    <canvas id="Grafico" style="width:100%;max-width:700px"></canvas>
+    
+
+
+
+
+</body>
+</html>
